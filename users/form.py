@@ -19,14 +19,39 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-
     class Meta:
         model = User
-        fields = ['username', 'email']  # Removed fullname and summary (they don't belong here)
-
+        fields = ['username', 'email']
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
+                'placeholder': 'Enter your username'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
+                'placeholder': 'Enter your email'
+            }),
+        }
 
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = profile
         fields = ['image', 'gender', 'age', 'fullname', 'summary']
+        widgets = {
+            'gender': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
+                'placeholder': 'Enter your gender'
+            }),
+            'age': forms.NumberInput(attrs={
+                'class': 'w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
+                'placeholder': 'Enter your age'
+            }),
+            'fullname': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
+                'placeholder': 'Enter your full name'
+            }),
+            'summary': forms.Textarea(attrs={
+                'class': 'w-full px-4 py-2 border rounded-lg shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
+                'placeholder': 'Write something about yourself'
+            }),
+        }

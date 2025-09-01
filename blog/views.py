@@ -179,7 +179,7 @@ def like_post(request,pk):
             action_url=f'/post/{post.id}/'
         )
 
-    return redirect('post-detail',pk=pk)
+    return redirect(request.META.get('HTTP_REFERER', 'blog-home'))
 
 def about(request):
     links = [
